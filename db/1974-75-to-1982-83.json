@@ -16439,10 +16439,7 @@
           "ID": "52882*2",
           "composerName": "Mahler,  Gustav",
           "workTitle": "SYMPHONY NO.  9 IN D MAJOR",
-          "movement": {
-            "_": "Im Tempo eines gemächlichen Ländlers, etwas täppisch und sehr derb (In the tempo of a comfortable  somewhat clumsy and very coarse)",
-            "em": "Ländler,"
-          },
+          "movement": "Im Tempo eines gemächlichen Ländlers, etwas täppisch und sehr derb (In the tempo of a comfortable  somewhat clumsy and very coarse)",
           "conductorName": "Boulez, Pierre",
           "soloists": []
         },
@@ -40754,9 +40751,7 @@
           "ID": "8867*4",
           "composerName": "Sibelius,  Jean",
           "workTitle": "LEMMINKAINEN SUITE (LEGENDS), OP. 22",
-          "movement": {
-            "em": "Lemminkäinen's Return"
-          },
+          "movement": "Lemminkäinen's Return",
           "conductorName": "Jarvi (Järvi), Neeme",
           "soloists": []
         },
@@ -63125,9 +63120,7 @@
           "ID": "8867*2",
           "composerName": "Sibelius,  Jean",
           "workTitle": "LEMMINKAINEN SUITE (LEGENDS), OP. 22",
-          "movement": {
-            "em": "The Swan of Tuonela"
-          },
+          "movement": "The Swan of Tuonela",
           "conductorName": "Mehta, Zubin",
           "soloists": [
             {
