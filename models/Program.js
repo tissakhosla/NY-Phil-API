@@ -9,10 +9,10 @@ const soloistsSchema = new Schema({
 
 const worksSchema = new Schema({
   programId: String,
-  composerName: String,
-  workTitle: String,
+  composer: String,
+  title: String,
   movement: String,
-  conductorName: String,
+  conductor: String,
   soloists: [soloistsSchema]
 })
 
