@@ -1,8 +1,8 @@
 const Program = require('./models/Program');
 
-const mainController = {
+const programController = {
   redirect: function (req, res) { //c
-    res.redirect("/programs")
+    res.redirect("/program")
   },
 
   index: function (req, res) { //r
@@ -40,4 +40,4 @@ const mainController = {
   }
 }
 
-module.exports = mainController
+module.exports = programController
