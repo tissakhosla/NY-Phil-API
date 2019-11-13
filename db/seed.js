@@ -30,7 +30,7 @@ const programData = seasonData.map(program => {
     newWorks.movement = work.movement;
     newWorks.conductor = work.conductorName;
     newWorks.soloists = soloistsArray;
-    //It would be nice not to display an empty array for soloists whenever there aren't. 
+    //It would be nice not to display an empty array for soloists whenever there aren't.
     return newWorks
   })
 

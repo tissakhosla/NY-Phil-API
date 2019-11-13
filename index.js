@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
 
-const mainController = require('./mainController')
+const parser = require('body-parser')
 
-app.get("/", mainController.redirect);
-
-app.get("/programs", mainController.index);
+app.use(parser.json())
+app.use(require('./routes/tissa'))
 
 app.listen(5000, function(req, res) {
   console.log("Listening on port 5000")
