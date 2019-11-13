@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express()
-const programController = require('../programController')
+const programController = require('../controllers/programController')
 
 router.get("/", programController.index); //r
 router.get("/orchestra/:orchestra", programController.lookUpByOrchestra) //r

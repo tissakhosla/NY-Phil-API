@@ -1,4 +1,4 @@
-const Program = require('./models/Program');
+const Program = require('../models/Program');
 
 const programController = {
   redirect: function (req, res) { //c
