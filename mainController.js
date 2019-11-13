@@ -1,7 +1,7 @@
 const Program = require('./models/Program');
 
 const mainController = {
-  redirect: function (req, res) {
+  redirect: function (req, res) { //c
     res.redirect("/programs")
   },
 
@@ -25,12 +25,19 @@ const mainController = {
       .then(performance => res.json(performance))
   },
 
-  editById: (req, res) => { //u
+  editById: function(req, res) { //u
     Program.findOneAndUpdate({_id: req.params._id}, req.body, { new: true, useFindAndModify: false })
       .then(program => {
         res.json(program)
       })
-    }
+  },
+
+  deleteById: function(req, res) { //d
+    Program.findOneAndDelete({_id: req.params._id}, { useFindAndModify: false })
+      .then(program => {
+        res.json(program)
+      })
+  }
 }
 
 module.exports = mainController
