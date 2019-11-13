@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 const soloistsSchema = new Schema({
   name: String,
   instrument: String,
-  rolesSATBX: String
+  role: String
 })
 
 const worksSchema = new Schema({
-  programId: String,
+  programID: String,
+  interval: String,
   composer: String,
   title: String,
   movement: String,
@@ -25,8 +26,8 @@ const concertsSchema = new Schema({
 })
 
 const programSchema = new Schema({
-  // philId: String,
-  programId: String,
+  performanceID: String,
+  programID: String,
   orchestra: String,
   season: String,
   concerts: [concertsSchema],

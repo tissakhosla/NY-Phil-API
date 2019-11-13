@@ -3,44 +3,47 @@ const Program = require('../models/Program')
 
 const programData = seasonData.map(program => {
 
-  const concertData = program.concerts.map(concert => {
+  const concertArray = program.concerts.map(concert => {
     const newConcerts = {}
     newConcerts.eventType = concert.eventType,
-      newConcerts.location = concert.Location,
-      newConcerts.venue = concert.Venue,
-      newConcerts.date = concert.Date
-      newConcerts.time = concert.Time
-      return newConcerts
+    newConcerts.location = concert.Location,
+    newConcerts.venue = concert.Venue,
+    newConcerts.date = concert.Date
+    newConcerts.time = concert.Time
+    return newConcerts
   })
 
   const workData = program.works.map(work => {
 
-    const soloistData = program.concerts.map(soloist => {
-      const newSoloists = {}
+    const soloistData = work.soloists.map(soloist => {
+      const newSoloists = {};
       newSoloists.name = soloist.soloistName,
-        newSoloists.instrument = soloist.soloistInstrument,
-        newSoloists.rolesSATBX = soloist.soloist
+      newSoloists.instrument = soloist.soloistInstrument,
+      newSoloists.role = soloist.soloistRoles
 
+      // console.log(newSoloists)
       return newSoloists
     })
-
-    const newWorks = {}
-    newWorks.programId = work.ID,
-      newWorks.composer = work.composerName,
-      newWorks.title = work.workTitle,
-      newWorks.movement = work.movement,
-      newWorks.conductor = work.conductorName,
-      newWorks.soloists = work.soloistData
+    const newWorks = {};
+    newWorks.programID = work.ID,
+    newWorks.interval = work.interval,
+    newWorks.composer = work.composerName,
+    newWorks.title = work.workTitle,
+    newWorks.movement = work.movement,
+    newWorks.conductor = work.conductorName,
+    console.log(soloistData)
+    newWorks.soloists = soloistData
 
     return newWorks
   })
 
-  const newProgram = {}
-  newProgram.programId = program.ID,
-    newProgram.orchestra = program.orchestra,
-    newProgram.season = program.season,
-    newProgram.concerts = concertData,
-    newProgram.works = workData
+  const newProgram = {};
+  newProgram.performanceID = program.performanceID,
+  newProgram.programID = program.programID,
+  newProgram.orchestra = program.orchestra,
+  newProgram.season = program.season,
+  newProgram.concerts = concertArray,
+  newProgram.works = workData
   return newProgram
 })
 
