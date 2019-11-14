@@ -153,14 +153,13 @@ Working on parsing the New York Philharmonic Data Archive, years 1974-1985.
 - [Heroku](https://www.heroku.com/home)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
-- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 - [Mongoose](https://mongoosejs.com/)
 - [Nodejs](https://nodejs.org/en/)
 
 # Future Objectives
 - [ ] Search inner arrays - conductor, works, soloists, etc.
 - [ ] Change Date and Time from String to Array Type
-- [ ] Make search easier, non eact match.
+- [ ] Make search easier, non exact match.
 - [ ] More/All of the archive, and keep it current.
 
 ## Acknowledgments
