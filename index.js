@@ -6,7 +6,8 @@ const parser = require('body-parser')
 app.use(parser.json())
 app.use(require('./routes/routeIndex'))
 
-app.listen(5000, function(req, res) {
-  console.log("Listening on port 5000")
-});
+app.set("port", process.env.PORT || 8080);
 
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+});
