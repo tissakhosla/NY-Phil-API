@@ -1,5 +1,19 @@
-const seasonData = require('./1974-75-to-1982-83.json')
+let seasonData = require('./1974-75-to-1982-83.json')
 const Program = require('../models/Program')
+
+
+seasonData = seasonData.map(value=>{ //noah
+  value.works = value.works.map(input=>{
+    
+    if(input.composerName){
+      input.composerName = input.composerName.replace(/[^\w\s]/gi, '');
+      input.composerName = input.composerName.replace(/\s\s+/g, ' ');
+    }
+    // console.log(input);
+    return input;
+  })
+  return value;
+})
 
 const programData = seasonData.map(program => {
 
@@ -14,7 +28,7 @@ const programData = seasonData.map(program => {
   })
 
   const worksArray = program.works.map(work => {
-
+    
     const soloistsArray = work.soloists.map(soloist => {
       const newSoloists = {};
       newSoloists.name = soloist.soloistName;
