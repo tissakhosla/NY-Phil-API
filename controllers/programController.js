@@ -19,19 +19,29 @@ const programController = {
     Program.find({ season: req.params.season })
       .then(programs => res.json(programs))
   },
-  
+
   lookUpByEvent: function (req, res) {
-    Program.find({ concerts: { $elemMatch: {eventType: req.params.eventType}}})
+    Program.find({ concerts: { $elemMatch: { eventType: req.params.eventType } } })
       .then(program => res.json(program))
   },
-  
+
   lookUpByLocation: function (req, res) {
-    Program.find({ concerts: { $elemMatch: {location: req.params.location}}})
+    Program.find({ concerts: { $elemMatch: { location: req.params.location } } })
       .then(program => res.json(program))
   },
 
   lookUpByVenue: function (req, res) {
-    Program.find({ concerts: { $elemMatch: {venue: req.params.location}}})
+    Program.find({ concerts: { $elemMatch: { venue: req.params.venue } } })
+      .then(program => res.json(program))
+  },
+
+  lookUpBySoloist: function (req, res) {
+    Program.find({ works: { $elemMatch: { soloists: { $elemMatch: { name: req.params.soloist } } } } })
+      .then(program => res.json(program))
+  },
+
+  lookUpByInstrument: function (req, res) {
+    Program.find({ works: { $elemMatch: { soloists: { $elemMatch: { instrument: req.params.instrument } } } } })
       .then(program => res.json(program))
   },
 
@@ -40,7 +50,10 @@ const programController = {
       .then(program => res.json(program))
   },
 
-
+  lookUpByTitle: function (req, res) {
+    Program.find({ works: { $elemMatch: { title: req.params.title } } })
+      .then(program => res.json(program))
+  },
 
   lookUpById: function (req, res) { //r
     Program.findOne({ _id: req.params._id })
@@ -67,13 +80,6 @@ const programController = {
   }
 }
 
-// const innerController = {
-//   lookUpComposer: function(req, res) {
-//     Program.find({
-//       "works": {composer: req.params.composer}})
-//       .then(program => res.json(program))
-//   }
-// }
 
 module.exports = programController
   // module.exports = innerController

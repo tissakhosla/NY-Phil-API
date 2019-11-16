@@ -5,13 +5,18 @@ const programController = require('../controllers/programController')
 
 
 router.get("/", programController.index); //r
-router.get("/orchestra/:orchestra", programController.lookUpByOrchestra) //r1 
-router.get("/season/:season", programController.lookUpBySeason) //r2
-router.get("/event/:eventType", programController.lookUpByEvent) //r3
-router.get("/location/:location", programController.lookUpByLocation) //r4
-router.get("/venue/:venue", programController.lookUpByVenue) //r
+router.get("/orchestra/:orchestra", programController.lookUpByOrchestra) //r
+router.get("/season/:season", programController.lookUpBySeason) //r
+
 router.get("/event/:eventType", programController.lookUpByEvent) //r
+router.get("/location/:location", programController.lookUpByLocation) //r
+router.get("/venue/:venue", programController.lookUpByVenue) //r
+
+router.get("/soloist/:soloist", programController.lookUpBySoloist) //r
+router.get("/instrument/:instrument", programController.lookUpByInstrument) //r
+
 router.get("/composer/:composer", programController.lookUpByComposer) //r
+router.get("/title/:title", programController.lookUpByTitle) //r
 router.get("/id/:_id", programController.lookUpById) //r
 
 router.post("/", programController.new) //c
