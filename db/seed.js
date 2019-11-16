@@ -1,37 +1,44 @@
-let seasonData = require('./1974-75-to-1982-83.json')
+let NYPData = require('./1974-75-to-1982-83.json')
 const Program = require('../models/Program')
 
-seasonData = seasonData.map(value => {
-  value.season = value.season.replace(/[^\w\s]/gi, ' to ');
-  value.concerts = value.concerts.map(input => {
-    if (input.Location) {
-      input.Location = input.Location.replace(/[^\w\s]/gi, '');
-      input.Location = input.Location.replace(/\s\s+/g, ' ');
+NYPData = NYPData.map(performance => {
+  performance.season = performance.season.replace(/[^\w\s]/gi, ' to ');
+
+  performance.concerts = performance.concerts.map(concert => {
+    if (concert.Location) {
+      concert.Location = concert.Location.replace(/[^\w\s]/gi, '');
+      concert.Location = concert.Location.replace(/\s\s+/g, ' ');
     }
-    return input
+    return concert
   })
 
-  value.works = value.works.map(input => {
+  performance.works = performance.works.map(work => {
 
-    if (input.composerName) {
-      input.composerName = input.composerName.replace(/[^\w\s]/gi, ''); //noah - eliminates special characters
-      input.composerName = input.composerName.replace(/\s\s+/g, ' '); // makes 2 spaces into one
+    if (work.composerName) {
+      work.composerName = work.composerName.replace(/[^\w\s]/gi, ''); //noah - eliminates special characters
+      work.composerName = work.composerName.replace(/\s\s+/g, ' '); // makes 2 spaces into one
     }
-    if (input.workTitle) {
-      input.workTitle = input.workTitle.replace(/[^\w\s]/gi, '');
-      input.workTitle = input.workTitle.replace(/\s\s+/g, ' ');
+    if (work.workTitle) {
+      work.workTitle = work.workTitle.replace(/[^\w\s]/gi, '');
+      work.workTitle = work.workTitle.replace(/\s\s+/g, ' ');
     }
-    if (input.conductorName) {
-      input.conductorName = input.conductorName.replace(/[^\w\s]/gi, '');
-      input.conductorName = input.conductorName.replace(/\s\s+/g, ' ');
+    if (work.conductorName) {
+      work.conductorName = work.conductorName.replace(/[^\w\s]/gi, '');
+      work.conductorName = work.conductorName.replace(/\s\s+/g, ' ');
     }
-
-    return input;
+    if (work.soloists) {
+      work.soloists = work.soloists.map(soloist => {
+        soloist.soloistName = soloist.soloistName.replace(/[^\w\s]/gi, '')
+        soloist.soloistName = soloist.soloistName.replace(/\s\s+/g, ' ')
+        return soloist
+      })
+    }
+    return work;
   })
-  return value;
+  return performance;
 })
 
-const programData = seasonData.map(program => {
+const programData = NYPData.map(program => {
 
   const concertsArray = program.concerts.map(concert => {
     const newConcerts = {};
