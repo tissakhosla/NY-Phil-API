@@ -10,15 +10,37 @@ const programController = {
       .then(programsObjsArray => res.json(programsObjsArray))
   },
 
+  lookUpByOrchestra: function (req, res) { //r
+    Program.find({ orchestra: req.params.orchestra })
+      .then(programs => res.json(programs))
+  },
+
+  lookUpBySeason: function (req, res) { //r
+    Program.find({ season: req.params.season })
+      .then(programs => res.json(programs))
+  },
+  
+  lookUpByEvent: function (req, res) {
+    Program.find({ concerts: { $elemMatch: {eventType: req.params.eventType}}})
+      .then(program => res.json(program))
+  },
+  
+  lookUpByLocation: function (req, res) {
+    Program.find({ concerts: { $elemMatch: {location: req.params.location}}})
+      .then(program => res.json(program))
+  },
+
+  lookUpByVenue: function (req, res) {
+    Program.find({ concerts: { $elemMatch: {venue: req.params.location}}})
+      .then(program => res.json(program))
+  },
+
   lookUpByComposer: function (req, res) {
     Program.find({ works: { $elemMatch: { composer: req.params.composer } } })
       .then(program => res.json(program))
   },
 
-  lookUpByOrchestra: function (req, res) { //r
-    Program.find({ orchestra: req.params.orchestra })
-      .then(programs => res.json(programs))
-  },
+
 
   lookUpById: function (req, res) { //r
     Program.findOne({ _id: req.params._id })
