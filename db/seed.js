@@ -1,15 +1,31 @@
 let seasonData = require('./1974-75-to-1982-83.json')
 const Program = require('../models/Program')
 
-
-seasonData = seasonData.map(value=>{ //noah
-  value.works = value.works.map(input=>{
-    
-    if(input.composerName){
-      input.composerName = input.composerName.replace(/[^\w\s]/gi, '');
-      input.composerName = input.composerName.replace(/\s\s+/g, ' ');
+seasonData = seasonData.map(value => {
+  value.season = value.season.replace(/[^\w\s]/gi, ' to ');
+  value.concerts = value.concerts.map(input => {
+    if (input.Location) {
+      input.Location = input.Location.replace(/[^\w\s]/gi, '');
+      input.Location = input.Location.replace(/\s\s+/g, ' ');
     }
-    // console.log(input);
+    return input
+  })
+
+  value.works = value.works.map(input => {
+
+    if (input.composerName) {
+      input.composerName = input.composerName.replace(/[^\w\s]/gi, ''); //noah - eliminates special characters
+      input.composerName = input.composerName.replace(/\s\s+/g, ' '); // makes 2 spaces into one
+    }
+    if (input.workTitle) {
+      input.workTitle = input.workTitle.replace(/[^\w\s]/gi, '');
+      input.workTitle = input.workTitle.replace(/\s\s+/g, ' ');
+    }
+    if (input.conductorName) {
+      input.conductorName = input.conductorName.replace(/[^\w\s]/gi, '');
+      input.conductorName = input.conductorName.replace(/\s\s+/g, ' ');
+    }
+
     return input;
   })
   return value;
@@ -28,7 +44,7 @@ const programData = seasonData.map(program => {
   })
 
   const worksArray = program.works.map(work => {
-    
+
     const soloistsArray = work.soloists.map(soloist => {
       const newSoloists = {};
       newSoloists.name = soloist.soloistName;
@@ -36,6 +52,7 @@ const programData = seasonData.map(program => {
       newSoloists.role = soloist.soloistRoles;
       return newSoloists
     })
+
     const newWorks = {};
     newWorks.programID = work.ID;
     newWorks.interval = work.interval;
